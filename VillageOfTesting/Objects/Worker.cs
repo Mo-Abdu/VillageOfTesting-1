@@ -15,8 +15,8 @@ namespace VillageOfTesting.Objects
         public string Occupation { get; set; }
         public IOccupationAction OccupationAction { get; set; }
         public bool Hungry { get; set; }
-        public bool Alive { get; set; }
-        public int DaysHungry { get; set; }
+        public bool Alive { get; set; } 
+        public int DaysHungry { get; set; } 
 
         public Worker(string name, string occupation, IOccupationAction occupationAction, bool hungry, bool alive, int daysHungry)
         {
