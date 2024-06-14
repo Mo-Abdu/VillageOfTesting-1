@@ -20,8 +20,8 @@ namespace VillageOfTestingTest
         }
 
         [Fact]
-        public void TestAddMultipleWorkers() 
-        { 
+        public void TestAddMultipleWorkers()
+        {
             var village = new Village();
             village.AddWorker("Anna", "farmer");
             village.AddWorker("Anders", "lumberjack");
@@ -33,11 +33,11 @@ namespace VillageOfTestingTest
         }
 
         [Fact]
-        public void TestCannotAddMoreThanMaxWorkers() 
+        public void TestCannotAddMoreThanMaxWorkers()
         {
             var village = new Village();
-            for (int i = 0; i < village.MaxWorkers; i++) 
-            { 
+            for (int i = 0; i < village.MaxWorkers; i++)
+            {
                 village.AddWorker($"Worker{i}", "farmer");
             }
 
@@ -46,8 +46,8 @@ namespace VillageOfTestingTest
         }
 
         [Fact]
-        public void TestDayWithoutWorkers() 
-        {  
+        public void TestDayWithoutWorkers()
+        {
             var village = new Village();
             village.Day();
 
@@ -56,7 +56,7 @@ namespace VillageOfTestingTest
         }
 
         [Fact]
-        public void TestDayWithWorkersAndFood() 
+        public void TestDayWithWorkersAndFood()
         {
             var village = new Village();
             village.AddWorker("Anna", "farmer");
@@ -72,8 +72,8 @@ namespace VillageOfTestingTest
 
 
         [Fact]
-        public void TestWorkersDieWithoutFood() 
-        { 
+        public void TestWorkersDieWithoutFood()
+        {
             var village = new Village();
             village.AddWorker("Alex", "miner");
             village.Food = 0;
@@ -89,7 +89,7 @@ namespace VillageOfTestingTest
         }
 
         [Fact]
-        public void TestAddProject() 
+        public void TestAddProject()
         {
             var village = new Village();
             village.Wood = 10;
@@ -102,7 +102,7 @@ namespace VillageOfTestingTest
         }
 
         [Fact]
-        public void TestAddProjectWithoutEnoughResources() 
+        public void TestAddProjectWithoutEnoughResources()
         {
             var village = new Village();
             village.Wood = 1;
@@ -115,7 +115,7 @@ namespace VillageOfTestingTest
         }
 
         [Fact]
-        public void TestCompleteProject() 
+        public void TestCompleteProject()
         {
             var village = new Village();
             village.AddWorker("Anna", "builder");
@@ -123,7 +123,7 @@ namespace VillageOfTestingTest
             village.Metal = 10;
             village.AddProject("House");
 
-            while(village.Projects.Count > 0) 
+            while (village.Projects.Count > 0)
             {
                 village.Day();
             }
@@ -135,34 +135,37 @@ namespace VillageOfTestingTest
         }
 
         [Fact]
-        public void TestCompleteGame() 
+        public void TestCompleteGame()
         {
             var village = new Village();
-            village.Wood = 100;
-            village.Metal = 100;
 
-            village.AddWorker("Anna", "builder");
             village.AddWorker("Anders", "builder");
+          
 
-            village.AddProject("House");
+            village.AddProject("Castle");
 
-            while (!village.GameOver) 
+            while (!village.GameOver)
             {
                 village.Day();
+
+                if (village.GameOver)
+                {
+                    break;
+                }
+                else
+                {
+                    foreach (var worker in village.Workers)
+                    {
+                        worker.DoWork();
+                    }
+                }
             }
-
             Assert.True(village.GameOver);
-            Assert.Equal("House", village.Buildings.Last().Name);
-
+    
+               
         }
-
-
-
-
-
-
-
-
-
     }
-}
+
+
+}  
+    

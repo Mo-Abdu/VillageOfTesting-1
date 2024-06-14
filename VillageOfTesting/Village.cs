@@ -102,7 +102,8 @@ namespace VillageOfTesting
                 {
                     someoneAlive = true;
                 }
-            }
+            } 
+            
             DaysGone++;
             if (!someoneAlive && Workers.Count > 0)
             {
