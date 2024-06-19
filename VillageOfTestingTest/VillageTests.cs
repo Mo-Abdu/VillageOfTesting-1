@@ -139,7 +139,7 @@ namespace VillageOfTestingTest
         {
             var village = new Village();
 
-            village.AddWorker("Nadir", "woodcutter");
+            village.AddWorker("Nadir", "lumberjack");
             village.AddWorker("Samer", "miner");
             village.AddWorker("Rami", "farmer");
 
@@ -158,7 +158,8 @@ namespace VillageOfTestingTest
                 village.Day();
             }
 
-            Assert.Contains(village.Buildings, b => b.Name == "Castle");
+            Assert.Equal(4, village.Buildings.Count);
+            Assert.Equal("Castle", village.Buildings[3].Name);
 
         }
     }
