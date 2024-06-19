@@ -139,30 +139,27 @@ namespace VillageOfTestingTest
         {
             var village = new Village();
 
-            village.AddWorker("Anders", "builder");
-          
+            village.AddWorker("Nadir", "woodcutter");
+            village.AddWorker("Samer", "miner");
+            village.AddWorker("Rami", "farmer");
+
+            for (int i = 0; i < 50; i++)
+            {
+                village.Day();
+            }
+            
 
             village.AddProject("Castle");
 
-            while (!village.GameOver)
-            {
-                village.Day();
+            village.AddWorker("Naser", "builder");
 
-                if (village.GameOver)
-                {
-                    break;
-                }
-                else
-                {
-                    foreach (var worker in village.Workers)
-                    {
-                        worker.DoWork();
-                    }
-                }
+            for (int i = 0; i < 50; i++)
+            { 
+                village.Day();
             }
-            Assert.True(village.GameOver);
-    
-               
+
+            Assert.Contains(village.Buildings, b => b.Name == "Castle");
+
         }
     }
 

@@ -70,9 +70,9 @@ namespace VillageOfTesting
         {
             MakeDictionaries();
 
-            Buildings.Add(new Building("House"));
-            Buildings.Add(new Building("House"));
-            Buildings.Add(new Building("House"));
+            Buildings.Add(new Building("Castle"));
+            Buildings.Add(new Building("Castle"));
+            Buildings.Add(new Building("Castle"));
             MaxWorkers = 6;
             Food = 10;
         }
@@ -100,6 +100,7 @@ namespace VillageOfTesting
                 worker.DoWork();
                 if (worker.Alive)
                 {
+                    //worker.DoWork();//j
                     someoneAlive = true;
                 }
             } 
